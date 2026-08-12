@@ -63,7 +63,7 @@ body{background:#f0eeea;font-family:'Inter',sans-serif;font-weight:300;min-heigh
 .item-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:40px}
 .item-body{padding:10px 11px 12px}
 .item-name{font-family:'Cormorant Garamond',serif;font-size:15px;font-weight:600;color:#111;line-height:1.2;margin-bottom:4px}
-.item-price{font-size:12px;font-weight:500;color:#111;margin-bottom:8px}
+
 .item-btns{display:flex;gap:6px}
 .btn-tryon{flex:1;background:#111;color:#fff;border:none;padding:8px 4px;font-size:9px;font-weight:500;letter-spacing:1px;text-transform:uppercase;cursor:pointer;border-radius:4px}
 .btn-download{background:#f0eeea;border:1px solid #e0ddd8;color:#555;padding:8px 10px;font-size:14px;cursor:pointer;border-radius:4px;display:flex;align-items:center;justify-content:center}
@@ -78,7 +78,7 @@ body{background:#f0eeea;font-family:'Inter',sans-serif;font-weight:300;min-heigh
 .modal-info{padding:18px 18px 28px}
 .modal-cat-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:6px}
 .modal-name{font-family:'Cormorant Garamond',serif;font-size:28px;font-weight:700;color:#111;margin-bottom:6px;line-height:1.2}
-.modal-price{font-size:20px;font-weight:500;margin-bottom:18px}
+
 .modal-action-row{display:flex;gap:10px}
 .modal-btn-tryon{flex:1;background:#111;color:#fff;border:none;padding:15px;font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;border-radius:6px}
 .modal-btn-download{background:#f0eeea;border:1px solid #e0ddd8;color:#333;padding:15px 18px;font-size:18px;cursor:pointer;border-radius:6px}
@@ -125,7 +125,7 @@ body{background:#f0eeea;font-family:'Inter',sans-serif;font-weight:300;min-heigh
     <div class="modal-info">
       <div class="modal-cat-label" id="mCat"></div>
       <div class="modal-name" id="mName"></div>
-      <div class="modal-price" id="mPrice"></div>
+      
       <div class="modal-action-row">
         <button class="modal-btn-tryon" id="mBtnTryon">Примірити</button>
         <button class="modal-btn-download" id="mBtnDownload" title="Завантажити фото">⬇</button>
@@ -232,7 +232,7 @@ function renderItems(){
       </div>
       <div class="item-body">
         <div class="item-name">${i.name}</div>
-        <div class="item-price">${i.price} грн</div>
+        
         <div class="item-btns">
           <button class="btn-tryon" onclick="tryOn(${i.id})">Примірити</button>
           <button class="btn-download" onclick="downloadPhoto('${i.photo_url||''}','${i.name}')">⬇</button>
@@ -247,7 +247,7 @@ function openModal(id){
   if(!selectedItem)return;
   document.getElementById('mCat').textContent=selectedItem.category;
   document.getElementById('mName').textContent=selectedItem.name;
-  document.getElementById('mPrice').textContent=selectedItem.price+' грн';
+  
   document.getElementById('mImgWrap').innerHTML=selectedItem.photo_url
     ?`<img class="modal-img-big" src="${selectedItem.photo_url}" alt="${selectedItem.name}">`
     :`<div class="modal-img-placeholder">👗</div>`;
