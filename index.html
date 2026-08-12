@@ -127,7 +127,7 @@ body{background:#f0eeea;font-family:'Inter',sans-serif;font-weight:300;min-heigh
       <div class="modal-name" id="mName"></div>
       
       <div class="modal-action-row">
-        <button class="modal-btn-tryon" id="mBtnTryon">Примірити</button>
+        
         <button class="modal-btn-download" id="mBtnDownload" title="Завантажити фото">⬇</button>
         <button class="modal-btn-close" onclick="closeModal()">✕</button>
       </div>
@@ -170,7 +170,7 @@ let selectedItem=null;
 
 async function load(){
   try{
-    const apiBase='https://demood-bot-oehc.onrender.com';
+    const apiBase='https://demood-bot.onrender.com';
     const r=await fetch(apiBase+'/catalog');
     allItems=await r.json();
   }catch(e){allItems=[];}
@@ -228,10 +228,7 @@ function renderItems(){
       <div class="item-body">
         <div class="item-name">${i.name}</div>
         
-        <div class="item-btns">
-          <button class="btn-tryon" onclick="tryOn(${i.id})">Примірити</button>
-          <button class="btn-download" onclick="downloadPhoto('${i.photo_url||''}','${i.name}')">⬇</button>
-        </div>
+        <button style="width:100%;padding:9px;border-radius:4px;background:#111;color:#fff;border:none;font-size:11px;font-weight:500;letter-spacing:1px;cursor:pointer" onclick="downloadPhoto('${i.photo_url||''}','${i.name}',${i.id})">⬇ Завантажити фото</button>
       </div>
     </div>`).join('');
 }
@@ -246,8 +243,7 @@ function openModal(id){
   document.getElementById('mImgWrap').innerHTML=selectedItem.photo_url
     ?`<img class="modal-img-big" src="${selectedItem.photo_url}" alt="${selectedItem.name}">`
     :`<div class="modal-img-placeholder">👗</div>`;
-  document.getElementById('mBtnTryon').onclick=()=>tryOn(selectedItem.id);
-  document.getElementById('mBtnDownload').onclick=()=>downloadPhoto(selectedItem.photo_url||'',selectedItem.name);
+        <button class="modal-btn-tryon" id="mBtnDownload">⬇ Завантажити фото</button>
   document.getElementById('modal').classList.add('open');
 }
 
@@ -260,15 +256,15 @@ function tryOn(id){
   tg.sendData(JSON.stringify({action:'tryon',item_id:item?item.id:id,item_name:item?item.name:''}));
 }
 
-function downloadPhoto(url,name){
+function downloadPhoto(url,name,id){
   if(!url){alert('Фото недоступне');return;}
-  const a=document.createElement('a');
-  a.href=url;
-  a.download=name+'.jpg';
-  a.target='_blank';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
+  // Відправляємо боту щоб він прислав фото в чат
+  try{
+    tg.sendData(JSON.stringify({action:'send_photo',item_id:id,item_name:name}));
+  }catch(e){
+    // Якщо не працює через бота - просто відкриваємо фото
+    window.open(url,'_blank');
+  }
 }
 
 load();
