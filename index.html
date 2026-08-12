@@ -170,7 +170,7 @@ let selectedItem=null;
 
 async function load(){
   try{
-    const apiBase='https://demood-bot.onrender.com';
+    const apiBase='https://demood-bot-oehc.onrender.com';
     const r=await fetch(apiBase+'/catalog');
     allItems=await r.json();
   }catch(e){allItems=[];}
