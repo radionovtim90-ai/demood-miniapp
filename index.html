@@ -127,8 +127,7 @@ body{background:#f0eeea;font-family:'Inter',sans-serif;font-weight:300;min-heigh
       <div class="modal-name" id="mName"></div>
       
       <div class="modal-action-row">
-        
-        <button class="modal-btn-download" id="mBtnDownload" title="Завантажити фото">⬇</button>
+        <button class="modal-btn-tryon" id="mBtnDownload">⬇ Завантажити фото</button>
         <button class="modal-btn-close" onclick="closeModal()">✕</button>
       </div>
     </div>
@@ -253,7 +252,7 @@ function openModal(id){
   document.getElementById('mImgWrap').innerHTML=selectedItem.photo_url
     ?`<img class="modal-img-big" src="${selectedItem.photo_url}" alt="${selectedItem.name}">`
     :`<div class="modal-img-placeholder">👗</div>`;
-        <button class="modal-btn-tryon" id="mBtnDownload">⬇ Завантажити фото</button>
+  document.getElementById('mBtnDownload').onclick=()=>downloadPhoto(selectedItem.photo_url||'',selectedItem.name,selectedItem.id);
   document.getElementById('modal').classList.add('open');
 }
 
