@@ -102,6 +102,9 @@ body{background:#f0eeea;font-family:'Inter',sans-serif;font-weight:300;min-heigh
     <div class="header-logo">DEMOOD</div>
     <div class="header-sub">Каталог одягу</div>
   </div>
+  <div style="margin:0 14px 4px;background:#fff;border-radius:12px;padding:12px 16px;border:1px solid #e8e6e2;font-size:12px;color:#666;line-height:1.6">
+    💡 <b style="color:#111">Як приміряти:</b> знайди товар → зроби скріншот → напиши /tryon боту → надішли своє фото і скріншот товару
+  </div>
   <div class="cat-list" id="catList">
     <div style="text-align:center;padding:40px;color:#999;font-size:13px">Завантаження...</div>
   </div>
@@ -127,7 +130,7 @@ body{background:#f0eeea;font-family:'Inter',sans-serif;font-weight:300;min-heigh
       <div class="modal-name" id="mName"></div>
       
       <div class="modal-action-row">
-        <button class="modal-btn-tryon" id="mBtnDownload">⬇ Завантажити фото</button>
+
         <button class="modal-btn-close" onclick="closeModal()">✕</button>
       </div>
     </div>
@@ -237,7 +240,7 @@ function renderItems(){
       <div class="item-body">
         <div class="item-name">${i.name}</div>
         
-        <button style="width:100%;padding:9px;border-radius:4px;background:#111;color:#fff;border:none;font-size:11px;font-weight:500;letter-spacing:1px;cursor:pointer" onclick="downloadPhoto('${i.photo_url||''}','${i.name}',${i.id})">⬇ Завантажити фото</button>
+
       </div>
     </div>`).join('');
 }
@@ -280,3 +283,4 @@ load();
 </script>
 </body>
 </html>
+
